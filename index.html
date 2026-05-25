@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuhOne — Бухгалтерские услуги в Санкт-Петербурге</title>
+    <link rel="stylesheet" href="style.css">    
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <!-- Top contact bar -->
+        <div class="top-bar">
+            <div class="container flex">
+                <div class="icons">
+                    <div>
+                    <img src="/main/img/phone.png" alt="">
+                    <a href="tel:+71112223344" style="text-decoration: none; color: #333;">
+                        <strong>8 (111) 222-33-44</strong>
+                    </a>
+                    </div>
+                    <div>
+                    <img src="/main/img/clock.png" alt="">
+                    <span>Пн-Пт 10:00-18:00</span>
+                    </div>
+                    <div>
+                    <img src="/main/img/mail.png" alt="">
+                    <a href="mailto:order@bu-one.ru" style="text-decoration: none; color: #333;">
+                        order@bu-one.ru
+                    </a>
+                    </div>
+                    <div>
+                    <img src="/main/img/map_point.png" alt="">
+                    <span>Невский пр. 130</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main navigation -->
+        <div class="container" style="padding: 20px 20px;">
+            <div class="flex">
+                <!-- Logo -->
+                <a href="#" class="logo">
+                    <img src="/main/img/logo.png" alt="">
+                </a>
+
+                <!-- Burger Button -->
+            <button class="burger" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+                <!-- Navigation -->
+                <nav class="nav" id="nav">
+                    <a href="#">ГЛАВНАЯ</a>
+                    <a href="#">УСЛУГИ</a>
+                    <a href="#">КЕЙСЫ</a>
+                    <a href="#">О КОМПАНИИ</a>
+                    <a href="#">КОНТАКТЫ</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Slider Section -->
+    <section class="slider" id="slider">
+        <div class="slides" id="slides">
+        <div class="slide active" style="background-image: url('/main/img/bg1.png')"></div>
+        <div class="slide" style="background-image: url('/main/img/bg2.png')"></div>
+        <div class="slide" style="background-image: url('/main/img/bg1.png')"></div>
+        <div class="slide" style="background-image: url('/main/img/bg2.png')"></div>
+        
+    </div>
+        <div class="slider-content">
+            <h1>Бухгалтерские услуги<br>в Санкт-Петербурге</h1>
+            <a href="#" class="btn">Наша презентация</a>
+        </div>
+        <div class="slider-content">            
+        </div>
+
+        <!-- Carousel dots -->
+        <div class="carousel-dots">
+            <div class="dot active" data-index="0"></div>
+            <div class="dot" data-index="1"></div>
+            <div class="dot" data-index="2"></div>
+            <div class="dot" data-index="3"></div>
+        </div>
+
+        <!-- Carousel arrows -->
+        <div class="carousel-arrows">
+            <div class="arrow" id="prev">‹</div>
+            <div class="arrow" id="next">›</div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-grid">
+            <!-- Left side -->
+            <div class="contact-left">
+                <h2>Связь с нами</h2>
+                <p>У вас остались вопросы? Напишите нам — мы ответим в ближайшее время!</p>
+                
+                <div class="contact-info">
+                    <a href="tel:+71112223344">
+                        +7 (111) 222-33-44
+                    </a>
+                    <a href="mailto:order@bu-one.ru">
+                        <img src="/main/img/mail_white.png" alt="">order@bu-one.ru
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right side - Form -->
+            <div>
+                <form>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Имя</label>
+                            <input type="text" placeholder="Иван" >
+                        </div>
+                        <div class="form-group">
+                            <label>Фамилия</label>
+                            <input type="text" placeholder="Иванов" >
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Сообщение</label>
+                        <textarea placeholder="Ваше сообщение"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Отправить сообщение</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                <div>2019 © Все права защищены. BuhOne.ru</div>
+                <div>Разработано: BuhOne</div>
+            </div>
+        </div>
+    </footer>
+<script>
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    let current = 0;
+
+    function showSlide(n) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        slides[n].classList.add('active');
+        dots[n].classList.add('active');
+        current = n;
+    }
+
+    // Стрелки
+    document.getElementById('next').addEventListener('click', () => {
+        let next = current + 1;
+        if (next >= slides.length) next = 0;
+        showSlide(next);
+    });
+
+    document.getElementById('prev').addEventListener('click', () => {
+        let prev = current - 1;
+        if (prev < 0) prev = slides.length - 1;
+        showSlide(prev);
+    });
+
+    // Точки
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => showSlide(index));
+    });       
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const burger = document.getElementById('burger');
+        const nav = document.getElementById('nav');
+
+        if (burger && nav) {
+            burger.addEventListener('click', function() {
+                burger.classList.toggle('active');
+                nav.classList.toggle('active');
+            });
+
+            // Закрывать меню при клике на ссылки
+            document.querySelectorAll('.nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    burger.classList.remove('active');
+                    nav.classList.remove('active');
+                });
+            });
+        } else {
+            console.error('Элементы бургер-меню не найдены!');
+        }
+    });
+
+        // Form submission simulation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Сообщение отправлено! (Демо)');
+        });
+</script>
+</body>
+</html>
